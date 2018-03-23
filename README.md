@@ -1,6 +1,6 @@
 # Onion
 
-[![Release](https://jitpack.io/v/cbdyzj/joi.svg)](https://jitpack.io/#cbdyzj/onion)
+[![Release](https://jitpack.io/v/cbdyzj/onion.svg)](https://jitpack.io/#cbdyzj/onion)
 
 ## Usage
 
