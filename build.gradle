@@ -1,6 +1,6 @@
 //noinspection SpellCheckingInspection
-group 'org.jianzhao.onion'
-version "0.0.1"
+group = 'org.jianzhao.onion'
+version = '0.0.1'
 
 apply plugin: 'java'
 
