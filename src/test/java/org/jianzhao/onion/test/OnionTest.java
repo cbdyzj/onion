@@ -1,4 +1,4 @@
-package org.jianzhao.onion.web.test;
+package org.jianzhao.onion.test;
 
 import org.junit.jupiter.api.Test;
 
