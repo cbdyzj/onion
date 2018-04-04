@@ -21,3 +21,12 @@ Undertow.builder()
         .addHttpListener(8000, "0.0.0.0")
         .build().start();
 ```
+## Better way
+
+```java
+Onion.Middleware<T extends Onion.Next> ware = ctx -> {
+    // ctx.doSomething();
+    ctx.next();
+}
+```
+
