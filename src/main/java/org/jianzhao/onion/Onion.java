@@ -3,6 +3,13 @@ package org.jianzhao.onion;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Onion just like Onion
+ *
+ * @param <T> Context
+ * @author cbdyzj
+ * @since 2018.3.23
+ */
 public final class Onion<T> {
 
     private List<Middleware<T>> middleware = new ArrayList<>();
@@ -26,19 +33,15 @@ public final class Onion<T> {
     }
 
     public interface Middleware<T> {
-
         void via(T context, Next next) throws Exception;
     }
 
     public interface Next {
-
         Next Nop = () -> { };
-
         void next() throws Exception;
     }
 
     public interface Handler<T> {
-
         void handle(T context) throws Exception;
     }
 }
