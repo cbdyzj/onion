@@ -13,7 +13,7 @@ public final class Onion<T> {
     }
 
     public Handler<T> callback() {
-        Middleware<T> ware = compose(this.middleware);
+        Middleware<T> ware = Onion.compose(this.middleware);
         return ctx -> ware.via(ctx, Next.Nop);
     }
 
@@ -22,7 +22,7 @@ public final class Onion<T> {
             return (ctx, nxt) -> nxt.next();
         }
         return (ctx, nxt) -> middleware.get(0)
-                .via(ctx, () -> compose(middleware.subList(1, middleware.size())).via(ctx, nxt));
+                .via(ctx, () -> Onion.compose(middleware.subList(1, middleware.size())).via(ctx, nxt));
     }
 
     public interface Middleware<T> {
