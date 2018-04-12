@@ -17,7 +17,6 @@ public final class Onion<T> {
         return ctx -> ware.via(ctx, Next.Nop);
     }
 
-    @SuppressWarnings("WeakerAccess")
     public static <T> Middleware<T> compose(List<Middleware<T>> middleware) {
         if (middleware.isEmpty()) {
             return (ctx, nxt) -> nxt.next();

@@ -21,7 +21,7 @@ Undertow.builder()
         .addHttpListener(8000, "0.0.0.0")
         .build().start();
 ```
-## Better way
+## Another way
 
 ```java
 Onion.Middleware<T extends Onion.Next> ware = ctx -> {
@@ -29,4 +29,3 @@ Onion.Middleware<T extends Onion.Next> ware = ctx -> {
     ctx.next();
 }
 ```
-

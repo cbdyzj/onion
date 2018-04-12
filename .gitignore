@@ -26,6 +26,3 @@ hs_err_pid*
 *.iml
 .DS_Store
 build/
-
-# main
-src/main/java/org/jianzhao/onion/Main.java
