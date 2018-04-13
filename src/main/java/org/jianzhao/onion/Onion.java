@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Onion just like an Onion
+ * Onion is just like an Onion
  *
  * @param <T> Context
  * @author cbdyzj
