@@ -10,6 +10,6 @@ repositories {
 }
 
 dependencies {
-    testCompile 'io.undertow:undertow-core:2.0.4.Final'
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testImplementation 'io.undertow:undertow-core:2.0.8.Final'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
 }
