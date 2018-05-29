@@ -1,5 +1,5 @@
 group = 'org.jianzhao.onion'
-version = '0.0.1'
+version = '0.1.0'
 
 apply plugin: 'java'
 
@@ -10,6 +10,5 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'io.undertow:undertow-core:2.0.8.Final'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+    testImplementation 'io.undertow:undertow-core:2.0.9.Final'
 }

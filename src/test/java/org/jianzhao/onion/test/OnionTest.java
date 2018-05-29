@@ -3,21 +3,13 @@ package org.jianzhao.onion.test;
 import io.undertow.Undertow;
 import io.undertow.server.HttpServerExchange;
 import org.jianzhao.onion.Onion;
-import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.stream.Stream;
 
-@SuppressWarnings("WeakerAccess")
 public class OnionTest {
 
-    @Test
-    public void test() {
-        Onion.Middleware<Object> composed = Onion.compose(Collections.singletonList((ctx, nxt) -> nxt.next()));
-    }
-
     public static void main(String... args) {
-        Onion<HttpServerExchange> app = new Onion<>();
+        Onion<HttpServerExchange> onion = new Onion<>();
 
         Onion.Middleware<HttpServerExchange> log = (ctx, nxt) -> {
             Stream.of("Before: ", ctx.getRequestPath(), "\n").forEach(System.out::print);
@@ -31,10 +23,10 @@ public class OnionTest {
             nxt.next();
         };
 
-        app.use(log).use(hi);
+        onion.use(log).use(hi);
 
         Undertow.builder()
-                .setHandler(app.callback()::handle)
+                .setHandler(onion::handle)
                 .addHttpListener(8000, "0.0.0.0")
                 .build().start();
     }
