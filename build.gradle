@@ -9,6 +9,15 @@ repositories {
     mavenCentral()
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
 dependencies {
     testImplementation 'io.undertow:undertow-core:2.0.9.Final'
 }
