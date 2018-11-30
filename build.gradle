@@ -19,5 +19,5 @@ artifacts {
 }
 
 dependencies {
-    testImplementation 'io.undertow:undertow-core:2.0.9.Final'
+    testImplementation 'io.undertow:undertow-core:2.0.16.Final'
 }
