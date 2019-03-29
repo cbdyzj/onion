@@ -19,5 +19,5 @@ artifacts {
 }
 
 dependencies {
-    testImplementation 'io.undertow:undertow-core:2.0.16.Final'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.1'
 }
