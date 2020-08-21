@@ -1,5 +1,7 @@
 package org.jianzhao.onion;
 
+import java.util.Arrays;
+
 /**
  * Onion is just like an Onion
  *
@@ -9,25 +11,21 @@ package org.jianzhao.onion;
  */
 public final class Onion<T> {
 
-    private Middleware<T> middleware = (ctx, nxt) -> nxt.next();
+    private Middleware<T> core = (ctx, nxt) -> nxt.next();
 
-    public Onion<T> use(Middleware<T> middleware) {
-        this.middleware = this.middleware.compose(middleware);
-        return this;
+    public final void use(Middleware<T> middleware) {
+        this.core = compose(this.core, middleware);
     }
 
     public void handle(T context) throws Exception {
 
-        this.middleware.via(context,() -> { });
+        this.core.via(context, () -> {
+        });
     }
 
     public interface Middleware<T> {
 
         void via(T context, Next next) throws Exception;
-
-        default Middleware<T> compose(Middleware<T> middleware) {
-            return (ctx, nxt) -> this.via(ctx, () -> middleware.via(ctx, nxt));
-        }
     }
 
     public interface Next {
@@ -35,4 +33,9 @@ public final class Onion<T> {
         void next() throws Exception;
     }
 
+    @SafeVarargs
+    public static <U> Middleware<U> compose(Middleware<U>... middlewares) {
+        return Arrays.stream(middlewares).reduce((ctx, nxt) -> nxt.next(),
+                (before, after) -> (ctx, nxt) -> before.via(ctx, () -> after.via(ctx, nxt)));
+    }
 }

@@ -13,7 +13,6 @@ public class OnionTest {
 
     @Test
     public void test() throws Exception {
-
         Onion.Middleware<Map<String, Long>> max = (ctx, nxt) -> {
             Long input = ctx.get("input");
             Long oldMax = ctx.get("max");
@@ -35,13 +34,6 @@ public class OnionTest {
             nxt.next();
         };
 
-        int TOTAl = 100;
-
-        int[] ints = ThreadLocalRandom.current()
-                .ints()
-                .filter(i -> i > 0)
-                .limit(TOTAl)
-                .toArray();
 
         Map<String, Long> context = new HashMap<>();
         context.put("max", Long.MIN_VALUE);
@@ -49,8 +41,16 @@ public class OnionTest {
         context.put("sum", 0L);
 
         Onion<Map<String, Long>> onion = new Onion<>();
-        onion.use(max).use(min).use(sum);
+        onion.use(max);
+        onion.use(min);
+        onion.use(sum);
 
+        int TOTAl = 100;
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        int[] ints = random
+                .ints().filter(i -> i > 0)
+                .limit(100)
+                .toArray();
         for (int i : ints) {
             context.put("input", (long) i);
             onion.handle(context);
